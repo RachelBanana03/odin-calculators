@@ -1,11 +1,7 @@
 // Mathematical patterns
-const NUM_REG = /\d+(?:\.\d+)*/;
-const MUL_DIV_REG = new RegExp(`${NUM_REG.source}[*\\/]${NUM_REG.source}(?:[*\\/]${NUM_REG.source})*`, "g");
-const ADD_SUB_REG = new RegExp(`${NUM_REG.source}[+-]${NUM_REG.source}(?:[+-]${NUM_REG.source})*`, "g");
-
-console.log(temp.source);
-console.log(MUL_DIV_REG.source);
-console.log(temp.source === MUL_DIV_REG.source);
+const NUM_REG = /\d+(?:\.\d+)*/; // A number with optional demical places
+const MUL_DIV_REG = new RegExp(`${NUM_REG.source}[*\\/]${NUM_REG.source}(?:[*\\/]${NUM_REG.source})*`, "g"); // Chain of multiplication/divisions
+const ADD_SUB_REG = new RegExp(`${NUM_REG.source}[+-]${NUM_REG.source}(?:[+-]${NUM_REG.source})*`, "g"); // Chain of additions/subtractions
 
 // /**
 //  * Evaluate a mathematical expression
@@ -16,9 +12,19 @@ function calculate(mathExp) {
     // check for syntax errors
     // check for overflow
 
-    // math for multiplication and division
-    let matchedExp = mathExp.match(/\d+(?:\.\d+)*[*\/]\d+(?:\.\d+)*(?:[*\/]\d+(?:\.\d+)*)*/g);
-    return matchedExp;
+    // Match and evaluate all multiplications/divisions first
+    mathExp = mathExp.replace(MUL_DIV_REG, multiplyDivide);
+
+    // Evaluate additions/subtractions and return final value
+    return addSubtract(mathExp);
+}
+
+function multiplyDivide(mulDivExp) {
+    return mulDivExp.split(/(?=[*\/])/g).reduce((n, opNum) => opNum[0]=="*"? +n*Number(opNum.slice(1)): +n/Number(opNum.slice(1)));
+}
+
+function addSubtract(addSubExp) {
+    return addSubExp.split(/(?=[+-])/g).reduce((n, opNum) => opNum[0]=="+"? +n+Number(opNum.slice(1)): +n-Number(opNum.slice(1)));
 }
 
 
