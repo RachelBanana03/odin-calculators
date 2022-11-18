@@ -26,5 +26,3 @@ function multiplyDivide(mulDivExp) {
 function addSubtract(addSubExp) {
     return addSubExp.split(/(?=[+-])/g).reduce((n, opNum) => opNum[0] == "+" ? +n + Number(opNum.slice(1)) : +n - Number(opNum.slice(1)));
 }
-
-export {calculate};
