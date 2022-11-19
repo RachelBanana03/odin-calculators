@@ -16,7 +16,7 @@ function calculate(mathExp) {
     mathExp = mathExp.replace(MUL_DIV_REG, multiplyDivide);
 
     // Evaluate additions/subtractions and return final value
-    return addSubtract(mathExp);
+    return Number(addSubtract(mathExp));
 }
 
 function multiplyDivide(mulDivExp) {
