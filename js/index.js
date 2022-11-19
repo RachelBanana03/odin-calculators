@@ -11,7 +11,7 @@ function displayResult() {
     if (typeof result === "string" || !isFinite(result)) {
         displayElement.classList.add("display-error");
     } else {
-        result = parseFloat(result.toFixed(20));
+        result = parseFloat(result.toFixed(10));
         displayElement.classList.remove("display-error");
     }
 
