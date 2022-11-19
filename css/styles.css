@@ -14,8 +14,7 @@ body {
 #calculator {
     width: clamp(350px, 90%, 630px);
     border: 1px solid;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding:5px;
 }
 
 #display {
@@ -35,4 +34,18 @@ body {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
+}
+
+#keyboard {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.key-num {
+    flex-grow: 1;
+    width: 33%;
+    text-align: center;
+    font-weight: bold;
+    line-height: 2rem;
 }
