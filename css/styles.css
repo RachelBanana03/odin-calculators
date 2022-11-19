@@ -37,15 +37,16 @@ body {
 }
 
 #keyboard {
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
 
-.key-num {
+.key {
     flex-grow: 1;
-    width: 33%;
     text-align: center;
     font-weight: bold;
     line-height: 2rem;
+    width: 25%;
+    max-width: 25%;
 }
