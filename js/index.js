@@ -1,6 +1,7 @@
 const displayElement = document.querySelector("#display");
 const inputElement = document.querySelector("#input-1");
 const keyNumOpElements = document.querySelectorAll(".key-num, .key-op");
+const keyEqElement = document.querySelector(".key-eq");
 
 inputElement.addEventListener("keydown", e => {
     if (e.key === "Enter") {
@@ -11,6 +12,10 @@ inputElement.addEventListener("keydown", e => {
 });
 
 keyNumOpElements.forEach(keyNum => keyNum.addEventListener("click", e => {
-    console.log(e.target.getAttribute("data-key"));
     inputElement.value += e.target.getAttribute("data-key");
 }));
+
+keyEqElement.addEventListener("click", e => {
+    let result = calculate(inputElement.value);
+    displayElement.textContent = result;
+})
