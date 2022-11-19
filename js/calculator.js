@@ -9,7 +9,7 @@ function calculate(mathExp) {
 
     // trim and check for syntax errors
     mathExp = mathExp.replace(/\s/g, "");
-    if (mathExp === "") return "EMPTY!";
+    if (mathExp === "") return "";
     if (!mathExp.match(MATH_REG)) return "SYNTAX ERROR!";
 
     // Match and evaluate all multiplications/divisions first

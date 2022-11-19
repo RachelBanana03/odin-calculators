@@ -50,3 +50,7 @@ body {
     width: 25%;
     max-width: 25%;
 }
+
+.display-error {
+    color: red;
+}
