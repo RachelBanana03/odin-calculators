@@ -1,4 +1,5 @@
 const displayElement = document.querySelector("#display");
+const displayDefaultText = displayElement.textContent;
 const inputElement = document.querySelector("#input-1");
 const keyNumOpElements = document.querySelectorAll(".key-num, .key-op");
 
@@ -35,5 +36,6 @@ document.querySelector(".key-c").addEventListener("click", () => {
 });
 
 document.querySelector(".key-ac").addEventListener("click", () => {
-    inputElement.value = ""
+    inputElement.value = "";
+    displayElement.textContent = displayDefaultText;
 });
