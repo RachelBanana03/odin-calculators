@@ -6,10 +6,10 @@ const MATH_REG = new RegExp(`^${NUM_REG.source}(?:[*\\/+-]${NUM_REG.source})*$`)
 
 // Calculation functions
 function calculate(mathExp) {
-    if (mathExp === "") return "EMPTY!";
 
     // trim and check for syntax errors
     mathExp = mathExp.replace(/\s/g, "");
+    if (mathExp === "") return "EMPTY!";
     if (!mathExp.match(MATH_REG)) return "SYNTAX ERROR!";
 
     // Match and evaluate all multiplications/divisions first
@@ -20,11 +20,15 @@ function calculate(mathExp) {
 }
 
 function multiplyDivide(mulDivExp) {
-    console.log(mulDivExp.split(/(?<=\d)(?=[*\/])/g));
-    return mulDivExp.split(/(?<=\d)(?=[*\/])/g).reduce((n, opNum) => opNum[0] == "*" ? +n * Number(opNum.slice(1)) : +n / Number(opNum.slice(1)));
+    return mulDivExp.split(/(?<=\d)(?=[*\/])/g) // Split into operator-number tokens, ex: 6*5.8/-7 => [6, *5.8, /-7]
+            .reduce((n, opNum) => opNum[0] == "*" 
+                                    ? +n * Number(opNum.slice(1)) 
+                                    : +n / Number(opNum.slice(1)));
 }
 
 function addSubtract(addSubExp) {
-    console.log(addSubExp.split(/(?<=\d)(?=[+-])/g));
-    return addSubExp.split(/(?<=\d)(?=[+-])/g).reduce((n, opNum) => opNum[0] == "+" ? +n + Number(opNum.slice(1)) : +n - Number(opNum.slice(1)));
+    return addSubExp.split(/(?<=\d)(?=[+-])/g) // Split into operator-number tokens, ex: 6+5--7 => [6, +5, --7]
+            .reduce((n, opNum) => opNum[0] == "+" 
+                                    ? +n + Number(opNum.slice(1)) 
+                                    : +n - Number(opNum.slice(1)));
 }
