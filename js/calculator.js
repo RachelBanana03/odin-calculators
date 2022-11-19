@@ -1,5 +1,5 @@
 // Mathematical patterns
-const NUM_REG = /-?\d+(?:\.\d+)*/; // A number with optional negative sign and demical places
+const NUM_REG = /-?\d+(?:\.\d+)?/; // A number with optional negative sign and demical places
 const MUL_DIV_REG = new RegExp(`${NUM_REG.source}[*\\/]${NUM_REG.source}(?:[*\\/]${NUM_REG.source})*`, "g"); // Chain of multiplication/divisions
 const ADD_SUB_REG = new RegExp(`${NUM_REG.source}[+-]${NUM_REG.source}(?:[+-]${NUM_REG.source})*`, "g"); // Chain of additions/subtractions
 const MATH_REG = new RegExp(`^${NUM_REG.source}(?:[*\\/+-]${NUM_REG.source})*$`); // match a valid math expression
