@@ -1,1 +1,0 @@
-console.log(calculate("3+3 -3"));

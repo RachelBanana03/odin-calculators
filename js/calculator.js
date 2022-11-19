@@ -1,5 +1,5 @@
 // Mathematical patterns
-const NUM_REG = /\d+(?:\.\d+)*/; // A number with optional demical places
+const NUM_REG = /-?\d+(?:\.\d+)*/; // A number with optional negative sign and demical places
 const MUL_DIV_REG = new RegExp(`${NUM_REG.source}[*\\/]${NUM_REG.source}(?:[*\\/]${NUM_REG.source})*`, "g"); // Chain of multiplication/divisions
 const ADD_SUB_REG = new RegExp(`${NUM_REG.source}[+-]${NUM_REG.source}(?:[+-]${NUM_REG.source})*`, "g"); // Chain of additions/subtractions
 const MATH_REG = new RegExp(`^${NUM_REG.source}(?:[*\\/+-]${NUM_REG.source})*$`); // match a valid math expression
@@ -20,9 +20,11 @@ function calculate(mathExp) {
 }
 
 function multiplyDivide(mulDivExp) {
-    return mulDivExp.split(/(?=[*\/])/g).reduce((n, opNum) => opNum[0] == "*" ? +n * Number(opNum.slice(1)) : +n / Number(opNum.slice(1)));
+    console.log(mulDivExp.split(/(?<=\d)(?=[*\/])/g));
+    return mulDivExp.split(/(?<=\d)(?=[*\/])/g).reduce((n, opNum) => opNum[0] == "*" ? +n * Number(opNum.slice(1)) : +n / Number(opNum.slice(1)));
 }
 
 function addSubtract(addSubExp) {
-    return addSubExp.split(/(?=[+-])/g).reduce((n, opNum) => opNum[0] == "+" ? +n + Number(opNum.slice(1)) : +n - Number(opNum.slice(1)));
+    console.log(addSubExp.split(/(?<=\d)(?=[+-])/g));
+    return addSubExp.split(/(?<=\d)(?=[+-])/g).reduce((n, opNum) => opNum[0] == "+" ? +n + Number(opNum.slice(1)) : +n - Number(opNum.slice(1)));
 }
